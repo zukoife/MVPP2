@@ -17,7 +17,7 @@ export default function BrandDashboardScreen() {
   return (
     <div className="min-h-screen bg-[#FEF3C7] font-[Plus_Jakarta_Sans]">
       {/* Sidebar */}
-      <div className="fixed left-0 top-0 h-full w-64 bg-white border-r border-[#FDE68A] p-6 z-40">
+      <div className="hidden md:block fixed left-0 top-0 h-full w-64 bg-white border-r border-[#FDE68A] p-6 z-40">
         <h1 className="text-2xl font-[Space_Grotesk] font-bold bg-gradient-to-r from-[#FB923C] to-[#EC4899] bg-clip-text text-transparent mb-8">
           Lynkkey
         </h1>
@@ -57,17 +57,17 @@ export default function BrandDashboardScreen() {
       </div>
 
       {/* Main Content */}
-      <div className="ml-64 p-8">
+      <div className="p-4 md:ml-64 md:p-8">
         {/* Top Bar */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 gap-4">
           <div>
-            <h2 className="text-3xl font-bold text-[#78350F]">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#78350F]">
               Welcome back, Fashion Forward!
             </h2>
-            <p className="text-[#78350F]/60">Here's your campaign performance overview</p>
+            <p className="text-sm md:text-base text-[#78350F]/60">Here's your campaign performance overview</p>
           </div>
-          <div className="flex items-center space-x-4">
-            <div className="relative w-64">
+          <div className="flex items-center space-x-2 md:space-x-4 w-full md:w-auto">
+            <div className="relative flex-1 md:flex-none md:w-64">
               <Icons.Search className="absolute left-3 top-3 w-5 h-5 text-[#78350F]/40" />
               <input
                 type="text"
@@ -84,7 +84,7 @@ export default function BrandDashboardScreen() {
         </div>
 
         {/* Performance Cards */}
-        <div className="grid grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
           {[
             {
               label: "Campaign Views",
@@ -117,22 +117,22 @@ export default function BrandDashboardScreen() {
           ].map((metric, idx) => {
             const MetricIcon = getIcon(metric.icon as keyof typeof Icons);
             return (
-              <div key={idx} className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+              <div key={idx} className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
                 <div className="flex items-center justify-between mb-4">
                   <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${metric.color} flex items-center justify-center`}>
                     <MetricIcon className="w-6 h-6 text-white" />
                   </div>
                   <span className="text-sm text-[#10B981] font-semibold">{metric.change}</span>
                 </div>
-                <div className="text-2xl font-bold text-[#78350F] mb-1">{metric.value}</div>
-                <div className="text-sm text-[#78350F]/60">{metric.label}</div>
+                <div className="text-xl md:text-2xl font-bold text-[#78350F] mb-1">{metric.value}</div>
+                <div className="text-xs md:text-sm text-[#78350F]/60">{metric.label}</div>
               </div>
             );
           })}
         </div>
 
         {/* Running Campaigns */}
-        <div className="bg-white rounded-xl p-6 border border-[#FDE68A] mb-8">
+        <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A] mb-6 md:mb-8">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xl font-semibold text-[#78350F]">
               Running Campaigns
@@ -217,9 +217,9 @@ export default function BrandDashboardScreen() {
         </div>
 
         {/* Quick Analytics */}
-        <div className="grid grid-cols-2 gap-6 mb-8">
-          <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
-            <h3 className="text-lg font-semibold text-[#78350F] mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
+          <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
+            <h3 className="text-base md:text-lg font-semibold text-[#78350F] mb-4">
               Top Performing Creators
             </h3>
             <div className="space-y-3">
@@ -244,8 +244,8 @@ export default function BrandDashboardScreen() {
               ))}
             </div>
           </div>
-          <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
-            <h3 className="text-lg font-semibold text-[#78350F] mb-4">
+          <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
+            <h3 className="text-base md:text-lg font-semibold text-[#78350F] mb-4">
               Engagement by Niche
             </h3>
             <div className="space-y-3">

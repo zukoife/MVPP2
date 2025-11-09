@@ -15,7 +15,7 @@ export default function ResetPasswordScreen({ state }: ResetPasswordScreenProps)
 
   return (
     <div className="min-h-screen bg-[#FEF3C7] font-[Plus_Jakarta_Sans] flex items-center justify-center px-6">
-      <div className="max-w-md w-full">
+      <div className="max-w-full sm:max-w-md w-full mx-4 sm:mx-0">
         {/* Logo */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-[Space_Grotesk] font-bold bg-gradient-to-r from-[#FB923C] to-[#EC4899] bg-clip-text text-transparent mb-2">

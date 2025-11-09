@@ -96,7 +96,7 @@ export default function SettingsScreen({ state }: SettingsScreenProps) {
           {/* Main Content */}
           <div className="col-span-3 space-y-6">
             {/* Profile Section */}
-            <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+            <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
               <h2 className="text-xl font-semibold text-[#78350F] mb-6">Profile Information</h2>
               {showUpgradePrompts ? (
                 <UpgradePrompt />
@@ -152,7 +152,7 @@ export default function SettingsScreen({ state }: SettingsScreenProps) {
             </div>
 
             {/* Social Integrations */}
-            <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+            <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
               <h2 className="text-xl font-semibold text-[#78350F] mb-6">Social Integrations</h2>
               {showUpgradePrompts ? (
                 <UpgradePrompt />
@@ -200,7 +200,7 @@ export default function SettingsScreen({ state }: SettingsScreenProps) {
             </div>
 
             {/* Notifications */}
-            <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+            <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
               <h2 className="text-xl font-semibold text-[#78350F] mb-6">Notification Preferences</h2>
               {showUpgradePrompts ? (
                 <UpgradePrompt />
@@ -237,7 +237,7 @@ export default function SettingsScreen({ state }: SettingsScreenProps) {
             </div>
 
             {/* Security */}
-            <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+            <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
               <h2 className="text-xl font-semibold text-[#78350F] mb-6">Security</h2>
               {showUpgradePrompts ? (
                 <UpgradePrompt />
@@ -272,7 +272,7 @@ export default function SettingsScreen({ state }: SettingsScreenProps) {
             </div>
 
             {/* Subscription */}
-            <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+            <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
               <h2 className="text-xl font-semibold text-[#78350F] mb-6">Subscription</h2>
               {showUpgradePrompts ? (
                 <div className="bg-gradient-to-r from-[#FB923C]/10 to-[#EC4899]/10 rounded-lg p-6 mb-4">
@@ -325,7 +325,7 @@ export default function SettingsScreen({ state }: SettingsScreenProps) {
 
             {/* Payout Settings */}
             {showPayoutSettings && (
-              <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+              <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
                 <h2 className="text-xl font-semibold text-[#78350F] mb-6">Payout Settings</h2>
                 <div className="space-y-4">
                   <div className="p-4 bg-[#FEF3C7] rounded-lg">

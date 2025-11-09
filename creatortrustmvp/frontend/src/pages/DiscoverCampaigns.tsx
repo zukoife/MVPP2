@@ -47,7 +47,7 @@ export default function DiscoverCampaignsScreen({
           <div
             className={`w-80 hidden lg:block`}
           >
-            <div className="bg-white rounded-xl p-6 border border-[#FDE68A] sticky top-4">
+            <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A] sticky top-4">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="font-semibold text-[#78350F]">Filters</h3>
                 {filtersActive && (
@@ -284,7 +284,7 @@ export default function DiscoverCampaignsScreen({
                 ].map((campaign, idx) => (
                   <div
                     key={idx}
-                    className="bg-white rounded-xl p-6 border border-[#FDE68A] hover:shadow-lg transition-all group"
+                    className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A] hover:shadow-lg transition-all group"
                   >
                     <div className="flex items-center justify-between mb-4">
                       <img

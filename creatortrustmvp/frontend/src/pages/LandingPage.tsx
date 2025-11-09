@@ -103,7 +103,7 @@ export default function LandingPageScreen({
       <section className="relative overflow-hidden py-24 px-6">
         <div className={`absolute inset-0 ${colors.gradientBg} opacity-50`}></div>
         <div className="relative max-w-7xl mx-auto text-center">
-          <h2 className={`text-5xl md:text-6xl font-[Space_Grotesk] font-bold ${colors.text} mb-6`}>
+          <h2 className={`text-3xl md:text-5xl md:text-6xl font-[Space_Grotesk] font-bold ${colors.text} mb-6`}>
             Connect Brands with Creators
             <br />
             <span className="bg-gradient-to-r from-[#FB923C] to-[#EC4899] bg-clip-text text-transparent">
@@ -127,7 +127,7 @@ export default function LandingPageScreen({
       {/* How It Works */}
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
-          <h3 className={`text-4xl font-[Space_Grotesk] font-bold text-center ${colors.text} mb-12`}>
+          <h3 className={`text-2xl md:text-4xl font-[Space_Grotesk] font-bold text-center ${colors.text} mb-12`}>
             How It Works
           </h3>
           <div className="grid md:grid-cols-4 gap-6">
@@ -178,7 +178,7 @@ export default function LandingPageScreen({
       {/* Features Grid */}
       <section className={`py-20 px-6 ${colors.card}`}>
         <div className="max-w-7xl mx-auto">
-          <h3 className={`text-4xl font-[Space_Grotesk] font-bold text-center ${colors.text} mb-12`}>
+          <h3 className={`text-2xl md:text-4xl font-[Space_Grotesk] font-bold text-center ${colors.text} mb-12`}>
             Powerful Features
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
@@ -230,7 +230,7 @@ export default function LandingPageScreen({
       {/* Testimonials Section */}
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
-          <h3 className={`text-4xl font-[Space_Grotesk] font-bold text-center ${colors.text} mb-12`}>
+          <h3 className={`text-2xl md:text-4xl font-[Space_Grotesk] font-bold text-center ${colors.text} mb-12`}>
             What Our Users Say
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
@@ -282,7 +282,7 @@ export default function LandingPageScreen({
       {/* Showcase Section */}
       <section className={`py-20 px-6 ${colors.card}`}>
         <div className="max-w-7xl mx-auto">
-          <h3 className={`text-4xl font-[Space_Grotesk] font-bold text-center ${colors.text} mb-12`}>
+          <h3 className={`text-2xl md:text-4xl font-[Space_Grotesk] font-bold text-center ${colors.text} mb-12`}>
             Success Stories
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -349,7 +349,7 @@ export default function LandingPageScreen({
       {/* Pricing Section */}
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
-          <h3 className={`text-4xl font-[Space_Grotesk] font-bold text-center ${colors.text} mb-8`}>
+          <h3 className={`text-2xl md:text-4xl font-[Space_Grotesk] font-bold text-center ${colors.text} mb-8`}>
             Simple, Transparent Pricing
           </h3>
 
@@ -418,7 +418,7 @@ export default function LandingPageScreen({
               >
                 <h4 className={`text-xl font-semibold ${colors.text} mb-2`}>{plan.name}</h4>
                 <div className="mb-6">
-                  <span className={`text-4xl font-bold ${colors.text}`}>{plan.price}</span>
+                  <span className={`text-2xl md:text-4xl font-bold ${colors.text}`}>{plan.price}</span>
                   <span className={colors.textMuted}>{plan.period}</span>
                 </div>
                 <ul className="space-y-3 mb-8">
@@ -447,7 +447,7 @@ export default function LandingPageScreen({
       {/* CTA Section */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto bg-gradient-to-r from-[#FB923C] to-[#EC4899] rounded-2xl p-12 text-center text-white">
-          <h3 className="text-4xl font-[Space_Grotesk] font-bold mb-4">Join Lynkkey Today</h3>
+          <h3 className="text-2xl md:text-4xl font-[Space_Grotesk] font-bold mb-4">Join Lynkkey Today</h3>
           <p className="text-xl mb-8 opacity-90">
             Start creating meaningful brand partnerships in minutes
           </p>

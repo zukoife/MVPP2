@@ -12,9 +12,9 @@ export interface ApplyToCampaignScreenProps {
 export default function ApplyToCampaignScreen() {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-6">
-      <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col">
+      <div className="bg-white rounded-2xl max-w-full sm:max-w-2xl w-full mx-4 sm:mx-0 max-h-[90vh] flex flex-col">
         {/* Header */}
-        <div className="p-6 border-b border-[#FDE68A] flex-shrink-0">
+        <div className="p-4 sm:p-6 border-b border-[#FDE68A] flex-shrink-0">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold text-[#78350F]">Apply to Campaign</h2>
@@ -53,7 +53,7 @@ export default function ApplyToCampaignScreen() {
                 <p className="text-sm text-[#78350F]/80 mb-3">
                   Choose your best content that showcases your fashion and lifestyle style
                 </p>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {[1, 2, 3, 4, 5, 6].map((i) => (
                     <label key={i} className="relative cursor-pointer group">
                       <input type="checkbox" className="sr-only" />

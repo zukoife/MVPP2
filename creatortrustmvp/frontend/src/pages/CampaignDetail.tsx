@@ -49,7 +49,7 @@ export default function CampaignDetailsScreen({ state }: CampaignDetailsScreenPr
           {/* Main Content */}
           <div className="col-span-2 space-y-6">
             {/* Campaign Details */}
-            <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+            <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
               <h2 className="text-xl font-semibold text-[#78350F] mb-4">Campaign Details</h2>
               <div className="space-y-4">
                 <div>
@@ -91,7 +91,7 @@ export default function CampaignDetailsScreen({ state }: CampaignDetailsScreenPr
 
             {/* Applicants List (Brand View) */}
             {isBrandView && (
-              <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+              <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="text-xl font-semibold text-[#78350F]">Applicants (12)</h2>
                   <select className="px-4 py-2 bg-[#FEF3C7] text-[#78350F] rounded-lg border border-[#FDE68A] w-full max-w-xs">
@@ -134,7 +134,7 @@ export default function CampaignDetailsScreen({ state }: CampaignDetailsScreenPr
 
             {/* Submission Form (Creator View) */}
             {isCreatorSubmission && (
-              <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+              <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
                 <h2 className="text-xl font-semibold text-[#78350F] mb-4">Submit Deliverables</h2>
                 <div className="space-y-4">
                   <div>
@@ -162,7 +162,7 @@ export default function CampaignDetailsScreen({ state }: CampaignDetailsScreenPr
 
             {/* Rating Interface */}
             {showRatingInterface && (
-              <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+              <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
                 <h2 className="text-xl font-semibold text-[#78350F] mb-4">Rate Your Experience</h2>
                 <div className="space-y-4">
                   <div className="flex items-center justify-center space-x-2 mb-4">
@@ -187,7 +187,7 @@ export default function CampaignDetailsScreen({ state }: CampaignDetailsScreenPr
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Campaign Info */}
-            <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+            <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
               <h3 className="font-semibold text-[#78350F] mb-4">Campaign Info</h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
@@ -210,7 +210,7 @@ export default function CampaignDetailsScreen({ state }: CampaignDetailsScreenPr
             </div>
 
             {/* Brand Info */}
-            <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+            <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
               <h3 className="font-semibold text-[#78350F] mb-4">About the Brand</h3>
               <div className="flex items-center space-x-3 mb-3">
                 <img src="./images/brand-logo.jpg" className="w-12 h-12 rounded-lg" alt="Fashion Forward brand logo" data-context="Brand logo in square container" />

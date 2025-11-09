@@ -45,7 +45,7 @@ export default function DiscoverCreatorsScreen({ state }: DiscoverCreatorsScreen
         <div className="flex gap-8">
           {/* Filter Sidebar */}
           <div className={`w-80 ${filtersActive ? 'block' : 'hidden lg:block'}`}>
-            <div className="bg-white rounded-xl p-6 border border-[#FDE68A] sticky top-0">
+            <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A] sticky top-0">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="font-semibold text-[#78350F]">Filters</h3>
                 {filtersActive && (
@@ -212,7 +212,7 @@ export default function DiscoverCreatorsScreen({ state }: DiscoverCreatorsScreen
                   { name: "Sophie Turner", niche: "Lifestyle", followers: "23.4K", engagement: "5.9%", rating: 4.5, verified: false },
                   { name: "Alex Rivera", niche: "Fitness", followers: "41.7K", engagement: "8.1%", rating: 4.9, verified: true },
                 ].map((creator, idx) => (
-                  <div key={idx} className="bg-white rounded-xl p-6 border border-[#FDE68A] hover:shadow-lg transition-all">
+                  <div key={idx} className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A] hover:shadow-lg transition-all">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center space-x-3">
                         <img src="./images/creator-avatar.jpg" className="w-12 h-12 rounded-full" alt="Creator avatar" data-context="Creator profile picture in card" />

@@ -22,9 +22,9 @@ export default function UpgradePromptModalScreen({
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-6">
       {!showPaymentModal ? (
-        <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="bg-white rounded-2xl max-w-full sm:max-w-4xl w-full mx-4 sm:mx-0 max-h-[90vh] overflow-y-auto">
           {/* Header */}
-          <div className="p-6 border-b border-[#FDE68A]">
+          <div className="p-4 sm:p-6 border-b border-[#FDE68A]">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-[#78350F]">
@@ -271,7 +271,7 @@ export default function UpgradePromptModalScreen({
       ) : (
         /* Payment Modal */
         <div className="bg-white rounded-2xl max-w-md w-full mx-4">
-          <div className="p-6 border-b border-[#FDE68A]">
+          <div className="p-4 sm:p-6 border-b border-[#FDE68A]">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-xl font-bold text-[#78350F]">

@@ -32,8 +32,8 @@ export default function PaymentsScreen({ state }: PaymentsScreenProps) {
 
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Balance Overview */}
-        <div className="grid grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8">
+          <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
             <div className="flex items-center justify-between mb-4">
               <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-green-600 rounded-lg flex items-center justify-center">
                 <Icons.DollarSign className="w-6 h-6 text-white" />
@@ -43,7 +43,7 @@ export default function PaymentsScreen({ state }: PaymentsScreenProps) {
             <div className="text-2xl font-bold text-[#78350F] mb-1">$12,450</div>
             <div className="text-sm text-[#78350F]/60">Available Balance</div>
           </div>
-          <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+          <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
             <div className="flex items-center justify-between mb-4">
               <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
                 <Icons.Shield className="w-6 h-6 text-white" />
@@ -53,7 +53,7 @@ export default function PaymentsScreen({ state }: PaymentsScreenProps) {
             <div className="text-2xl font-bold text-[#78350F] mb-1">$3,800</div>
             <div className="text-sm text-[#78350F]/60">Pending Release</div>
           </div>
-          <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+          <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
             <div className="flex items-center justify-between mb-4">
               <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-purple-600 rounded-lg flex items-center justify-center">
                 <Icons.TrendingUp className="w-6 h-6 text-white" />
@@ -66,7 +66,7 @@ export default function PaymentsScreen({ state }: PaymentsScreenProps) {
         </div>
 
         {/* Transaction History */}
-        <div className="bg-white rounded-xl p-6 border border-[#FDE68A] mb-8">
+        <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A] mb-8">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-semibold text-[#78350F]">Transaction History</h2>
             <div className="flex space-x-2">
@@ -134,9 +134,9 @@ export default function PaymentsScreen({ state }: PaymentsScreenProps) {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {/* Brand: Escrow Funding */}
-          <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+          <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
             <h3 className="text-lg font-semibold text-[#78350F] mb-4">Fund Escrow</h3>
             <p className="text-[#78350F]/60 mb-4">Deposit funds for upcoming campaigns</p>
             <div className="space-y-3">
@@ -157,7 +157,7 @@ export default function PaymentsScreen({ state }: PaymentsScreenProps) {
           </div>
 
           {/* Creator: Withdrawal */}
-          <div className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+          <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
             <h3 className="text-lg font-semibold text-[#78350F] mb-4">Withdraw Funds</h3>
             <p className="text-[#78350F]/60 mb-4">Transfer earnings to your account</p>
             <div className="space-y-3">
@@ -184,7 +184,7 @@ export default function PaymentsScreen({ state }: PaymentsScreenProps) {
 
         {/* Dispute Resolution */}
         {showDisputeResolution && (
-          <div className="mt-8 bg-white rounded-xl p-6 border border-[#FDE68A]">
+          <div className="mt-8 bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
             <h3 className="text-lg font-semibold text-[#78350F] mb-4">Dispute Resolution</h3>
             <div className="bg-red-50 rounded-lg p-4 mb-4">
               <div className="flex items-center space-x-3 mb-2">

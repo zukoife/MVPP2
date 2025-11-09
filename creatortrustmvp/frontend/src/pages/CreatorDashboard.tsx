@@ -25,7 +25,7 @@ export default function CreatorDashboardScreen({
   return (
     <div className="min-h-screen bg-[#FEF3C7] font-[Open_Sans]">
       {/* Sidebar */}
-      <div className="fixed left-0 top-0 h-full w-64 bg-white border-r border-[#FDE68A] p-6 z-40">
+      <div className="hidden md:block fixed left-0 top-0 h-full w-64 bg-white border-r border-[#FDE68A] p-6 z-40">
         <h1 className="text-2xl font-[Space_Grotesk] font-bold bg-gradient-to-r from-[#FB923C] to-[#EC4899] bg-clip-text text-transparent mb-8">
           Lynkkey
         </h1>
@@ -65,7 +65,7 @@ export default function CreatorDashboardScreen({
       </div>
 
       {/* Main Content */}
-      <div className="ml-64 p-8">
+      <div className="p-4 md:ml-64 md:p-8">
         {/* Top Bar */}
         <div className="flex justify-between items-center mb-8">
           <div>
@@ -92,7 +92,7 @@ export default function CreatorDashboardScreen({
         </div>
 
         {/* KPI Cards */}
-        <div className="grid grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8">
           {[
             {
               label: "Total Campaigns",
@@ -125,7 +125,7 @@ export default function CreatorDashboardScreen({
           ].map((kpi, idx) => {
             const KpiIcon = getIcon(kpi.icon as keyof typeof Icons);
             return (
-              <div key={idx} className="bg-white rounded-xl p-6 border border-[#FDE68A]">
+              <div key={idx} className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A]">
                 <div className="flex items-center justify-between mb-4">
                   <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${kpi.color} flex items-center justify-center`}>
                     <KpiIcon className="w-6 h-6 text-white" />
@@ -140,7 +140,7 @@ export default function CreatorDashboardScreen({
         </div>
 
         {/* Performance Graph */}
-        <div className="bg-white rounded-xl p-6 border border-[#FDE68A] mb-8">
+        <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A] mb-8">
           <h3 className="text-lg font-semibold text-[#78350F] mb-4">
             Performance Overview
           </h3>
@@ -153,7 +153,7 @@ export default function CreatorDashboardScreen({
         </div>
 
         {/* Active Campaigns */}
-        <div className="bg-white rounded-xl p-6 border border-[#FDE68A] mb-8">
+        <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A] mb-8">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold text-[#78350F]">
               Active Campaigns
@@ -236,7 +236,7 @@ export default function CreatorDashboardScreen({
         </div>
 
         {/* Notifications */}
-        <div className="bg-white rounded-xl p-6 border border-[#FDE68A] mb-8">
+        <div className="bg-white rounded-xl p-4 md:p-6 border border-[#FDE68A] mb-8">
           <h3 className="text-lg font-semibold text-[#78350F] mb-4">
             Recent Notifications
           </h3>
