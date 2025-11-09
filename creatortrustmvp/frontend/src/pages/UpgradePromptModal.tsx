@@ -1,9 +1,9 @@
-import React from "react";
+
 import * as Icons from "lucide-react";
 
 export interface UpgradePromptModalScreenProps {
   /** ID of the preview state to display */
-  state: string;
+  state?: string;
 }
 
 /**
