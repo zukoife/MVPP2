@@ -1,98 +1,149 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
-  const navigate = useNavigate();
+import * as Icons from "lucide-react";
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
+export interface LoginScreenProps {
+  state?: string;
+}
 
-    try {
-      await login(email, password);
-      navigate('/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'Failed to login');
-    } finally {
-      setLoading(false);
-    }
-  };
+/**
+ * States:
+ *  - default: Login form displayed
+ *  - forgotPasswordLink: Visual focus on forgot password link with recovery form
+ */
+export default function LoginScreen({ state }: LoginScreenProps) {
+  const focusForgotPassword = state === "forgotPasswordLink";
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50 p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-3xl font-bold text-center" style={{ color: '#6C63FF' }}>
-            CreatorTrust
-          </CardTitle>
-          <CardDescription className="text-center">
-            Sign in to your account
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {error && (
-              <div className="bg-red-50 text-red-600 p-3 rounded-md text-sm">
-                {error}
+    <div className="min-h-screen bg-[#FEF3C7] font-[Plus_Jakarta_Sans] flex items-center justify-center px-6">
+      <div className="max-w-full sm:max-w-md w-full mx-4 sm:mx-0">
+        {/* Logo */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-[Space_Grotesk] font-bold bg-gradient-to-r from-[#FB923C] to-[#EC4899] bg-clip-text text-transparent mb-2">
+            Lynkkey
+          </h1>
+          <p className="text-[#78350F]/60">
+            {focusForgotPassword ? "Reset your password" : "Welcome back"}
+          </p>
+        </div>
+
+        {/* Login Form or Password Recovery Form */}
+        <div className="bg-white rounded-2xl p-8 shadow-xl border border-[#FDE68A]">
+          {!focusForgotPassword ? (
+            <>
+              <h2 className="text-2xl font-bold text-[#78350F] mb-6">Sign In</h2>
+              <form className="space-y-4">
+                <div>
+                  <label className="block text-[#78350F] font-semibold mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    className="w-full px-4 py-3 bg-[#FEF3C7] text-[#78350F] rounded-lg border border-[#FDE68A] focus:outline-none focus:border-[#EC4899]"
+                    placeholder="your@email.com"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[#78350F] font-semibold mb-2">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    className="w-full px-4 py-3 bg-[#FEF3C7] text-[#78350F] rounded-lg border border-[#FDE68A] focus:outline-none focus:border-[#EC4899]"
+                    placeholder="••••••••"
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <label className="flex items-center">
+                    <input
+                      type="checkbox"
+                      className="w-4 h-4 text-[#EC4899] bg-[#FEF3C7] border-[#FDE68A] rounded focus:ring-[#EC4899]"
+                    />
+                    <span className="ml-2 text-sm text-[#78350F]">Remember me</span>
+                  </label>
+                  <a
+                    href="#"
+                    className="text-sm text-[#EC4899] hover:text-[#FB923C]"
+                  >
+                    Forgot password?
+                  </a>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full h-12 bg-gradient-to-r from-[#FB923C] to-[#EC4899] text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-pink-300/50 transition-all"
+                >
+                  Sign In
+                </button>
+              </form>
+
+              <div className="mt-6">
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-[#FDE68A]"></div>
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 bg-white text-[#78350F]/60">Or continue with</span>
+                  </div>
+                </div>
+                <div className="mt-4 grid grid-cols-2 gap-3">
+                  <button className="h-12 bg-white border border-[#FDE68A] rounded-lg flex items-center justify-center hover:bg-[#FEF3C7] transition-all">
+                    <Icons.Chrome className="w-5 h-5 text-[#78350F] mr-2" />
+                    Google
+                  </button>
+                  <button className="h-12 bg-white border border-[#FDE68A] rounded-lg flex items-center justify-center hover:bg-[#FEF3C7] transition-all">
+                    <Icons.Instagram className="w-5 h-5 text-[#78350F] mr-2" />
+                    Instagram
+                  </button>
+                </div>
               </div>
-            )}
-            
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium">
-                Email
-              </label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="you@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
 
-            <div className="space-y-2">
-              <label htmlFor="password" className="text-sm font-medium">
-                Password
-              </label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={loading}
-              style={{ backgroundColor: '#6C63FF' }}
-            >
-              {loading ? 'Signing in...' : 'Sign In'}
-            </Button>
-
-            <p className="text-center text-sm text-gray-600">
-              Don't have an account?{' '}
-              <Link to="/register" className="font-medium hover:underline" style={{ color: '#6C63FF' }}>
-                Sign up
-              </Link>
-            </p>
-          </form>
-        </CardContent>
-      </Card>
+              <p className="text-center text-[#78350F]/60 mt-6">
+                Don't have an account?{" "}
+                <a href="#" className="text-[#EC4899] hover:text-[#FB923C]">
+                  Sign up
+                </a>
+              </p>
+            </>
+          ) : (
+            <>
+              <div className="mb-6">
+                <Icons.Mail className="w-12 h-12 text-[#EC4899] mb-4" />
+                <h2 className="text-2xl font-bold text-[#78350F] mb-2">
+                  Forgot Password?
+                </h2>
+                <p className="text-[#78350F]/60 text-sm">
+                  Enter your email address and we'll send you a link to reset your password.
+                </p>
+              </div>
+              <form className="space-y-4">
+                <div>
+                  <label className="block text-[#78350F] font-semibold mb-2">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    className="w-full px-4 py-3 bg-[#FEF3C7] text-[#78350F] rounded-lg border border-[#FDE68A] focus:outline-none focus:border-[#EC4899]"
+                    placeholder="your@email.com"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full h-12 bg-gradient-to-r from-[#FB923C] to-[#EC4899] text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-pink-300/50 transition-all"
+                >
+                  Send Reset Link
+                </button>
+              </form>
+              <div className="mt-6 text-center">
+                <a
+                  href="#"
+                  className="text-sm text-[#EC4899] hover:text-[#FB923C] font-semibold"
+                >
+                  ← Back to Sign In
+                </a>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

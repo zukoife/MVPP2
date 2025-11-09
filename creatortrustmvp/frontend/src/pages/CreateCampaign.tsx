@@ -1,238 +1,220 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { api } from '../lib/api';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
 
-export default function CreateCampaign() {
-  const { logout } = useAuth();
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    budget: '',
-    duration_days: '',
-    niche: '',
-    min_followers: '',
-    content_requirements: '',
-    platforms: [] as string[],
-  });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+import * as Icons from "lucide-react";
 
-  const platformOptions = ['instagram', 'youtube', 'tiktok'];
+export interface CreateCampaignScreenProps {
+  state?: string;
+}
 
-  const handlePlatformToggle = (platform: string) => {
-    setFormData(prev => ({
-      ...prev,
-      platforms: prev.platforms.includes(platform)
-        ? prev.platforms.filter(p => p !== platform)
-        : [...prev.platforms, platform]
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-
-    if (formData.platforms.length === 0) {
-      setError('Please select at least one platform');
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const campaign = await api.createCampaign({
-        title: formData.title,
-        description: formData.description,
-        budget: parseFloat(formData.budget),
-        duration_days: parseInt(formData.duration_days),
-        niche: formData.niche,
-        min_followers: parseInt(formData.min_followers),
-        content_requirements: formData.content_requirements,
-        platforms: formData.platforms,
-      });
-      navigate(`/campaigns/${campaign.id}`);
-    } catch (err: any) {
-      setError(err.message || 'Failed to create campaign');
-    } finally {
-      setLoading(false);
-    }
-  };
+/**
+ * States:
+ *  - default: Full campaign creation form visible
+ *  - otherNicheSelected: Custom niche input field visible
+ */
+export default function CreateCampaignScreen({ state }: CreateCampaignScreenProps) {
+  const showCustomNiche = state === "otherNicheSelected";
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold" style={{ color: '#6C63FF' }}>CreatorTrust</h1>
-            <div className="flex gap-4">
-              <Button onClick={() => navigate('/dashboard')} variant="outline">Dashboard</Button>
-              <Button onClick={logout} variant="outline">Logout</Button>
+    <div className="min-h-screen bg-[#FEF3C7] font-[Plus_Jakarta_Sans]">
+      {/* Header */}
+      <div className="bg-white border-b border-[#FDE68A]">
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <button className="text-[#78350F] hover:text-[#EC4899]">
+                <Icons.ArrowLeft className="w-6 h-6" />
+              </button>
+              <div>
+                <h1 className="text-2xl font-bold text-[#78350F]">Create Campaign</h1>
+                <p className="text-[#78350F]/60">Set up your new brand collaboration</p>
+              </div>
+            </div>
+            <div className="flex space-x-3">
+              <button className="px-6 py-2 bg-[#FEF3C7] text-[#78350F] rounded-lg font-semibold hover:bg-[#FDE68A] transition-all">
+                Save as Draft
+              </button>
+              <button className="px-6 py-2 bg-gradient-to-r from-[#FB923C] to-[#EC4899] text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-pink-300/50 transition-all">
+                Publish Campaign
+              </button>
             </div>
           </div>
         </div>
-      </nav>
+      </div>
 
-      <div className="max-w-3xl mx-auto px-4 py-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>Create New Campaign</CardTitle>
-            <CardDescription>Fill in the details for your campaign</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {error && (
-                <div className="bg-red-50 text-red-600 p-3 rounded-md text-sm">
-                  {error}
-                </div>
-              )}
+      {/* Form */}
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <div className="bg-white rounded-2xl p-8 shadow-xl border border-[#FDE68A]">
+          <form className="space-y-6">
+            {/* Campaign Title */}
+            <div>
+              <label className="block text-[#78350F] font-semibold mb-2">
+                Campaign Title
+              </label>
+              <input
+                type="text"
+                className="w-full px-4 py-3 bg-[#FEF3C7] text-[#78350F] rounded-lg border border-[#FDE68A] focus:outline-none focus:border-[#EC4899]"
+                placeholder="e.g., Summer Fashion Collection Launch"
+              />
+            </div>
 
-              <div className="space-y-2">
-                <label htmlFor="title" className="text-sm font-medium">
-                  Campaign Title *
-                </label>
-                <Input
-                  id="title"
-                  value={formData.title}
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  placeholder="e.g., Summer Fashion Collection Launch"
-                  required
-                />
-              </div>
+            {/* Description */}
+            <div>
+              <label className="block text-[#78350F] font-semibold mb-2">
+                Description
+              </label>
+              <textarea
+                rows={4}
+                className="w-full px-4 py-3 bg-[#FEF3C7] text-[#78350F] rounded-lg border border-[#FDE68A] focus:outline-none focus:border-[#EC4899]"
+                placeholder="Describe your campaign goals, brand voice, and what you're looking for in creators..."
+              />
+            </div>
 
-              <div className="space-y-2">
-                <label htmlFor="description" className="text-sm font-medium">
-                  Description *
-                </label>
-                <Textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  placeholder="Describe your campaign..."
-                  rows={4}
-                  required
-                />
-              </div>
+            {/* Budget */}
+            <div>
+              <label className="block text-[#78350F] font-semibold mb-2">
+                Budget ($)
+              </label>
+              <input
+                type="number"
+                className="w-full px-4 py-3 bg-[#FEF3C7] text-[#78350F] rounded-lg border border-[#FDE68A] focus:outline-none focus:border-[#EC4899]"
+                placeholder="1500"
+              />
+              <p className="text-sm text-[#78350F]/60 mt-1">
+                This amount will be held in escrow until deliverables are approved
+              </p>
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label htmlFor="budget" className="text-sm font-medium">
-                    Budget (₦) *
-                  </label>
-                  <Input
-                    id="budget"
-                    type="number"
-                    value={formData.budget}
-                    onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                    placeholder="50000"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="duration" className="text-sm font-medium">
-                    Duration (days) *
-                  </label>
-                  <Input
-                    id="duration"
-                    type="number"
-                    value={formData.duration_days}
-                    onChange={(e) => setFormData({ ...formData, duration_days: e.target.value })}
-                    placeholder="30"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label htmlFor="niche" className="text-sm font-medium">
-                    Niche *
-                  </label>
-                  <Input
-                    id="niche"
-                    value={formData.niche}
-                    onChange={(e) => setFormData({ ...formData, niche: e.target.value })}
-                    placeholder="e.g., Fashion, Tech, Lifestyle"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="min_followers" className="text-sm font-medium">
-                    Minimum Followers *
-                  </label>
-                  <Input
-                    id="min_followers"
-                    type="number"
-                    value={formData.min_followers}
-                    onChange={(e) => setFormData({ ...formData, min_followers: e.target.value })}
-                    placeholder="10000"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <label className="text-sm font-medium">Platforms *</label>
-                <div className="space-y-2">
-                  {platformOptions.map((platform) => (
-                    <div key={platform} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={platform}
-                        checked={formData.platforms.includes(platform)}
-                        onCheckedChange={() => handlePlatformToggle(platform)}
-                      />
-                      <Label htmlFor={platform} className="capitalize cursor-pointer">
-                        {platform}
-                      </Label>
-                    </div>
+            {/* Deliverables */}
+            <div>
+              <label className="block text-[#78350F] font-semibold mb-2">
+                Deliverables
+              </label>
+              <textarea
+                rows={4}
+                className="w-full px-4 py-3 bg-[#FEF3C7] text-[#78350F] rounded-lg border border-[#FDE68A] focus:outline-none focus:border-[#EC4899]"
+                placeholder="• 3 Instagram posts with product tags&#10;• 1 YouTube video (3-5 minutes)&#10;• 5 Instagram Stories with swipe-up links"
+              />
+              <div className="mt-2 text-sm text-[#78350F]/60">
+                Suggested formats:
+                <div className="flex flex-wrap gap-2 mt-1">
+                  {["Instagram Posts", "Stories", "YouTube Video", "TikTok", "Blog Post", "Twitter Thread"].map((format) => (
+                    <button
+                      key={format}
+                      type="button"
+                      className="px-3 py-1 bg-white text-[#78350F] rounded-full border border-[#FDE68A] text-xs hover:bg-[#FEF3C7] transition-all"
+                    >
+                      + {format}
+                    </button>
                   ))}
                 </div>
               </div>
+            </div>
 
-              <div className="space-y-2">
-                <label htmlFor="content_requirements" className="text-sm font-medium">
-                  Content Requirements *
-                </label>
-                <Textarea
-                  id="content_requirements"
-                  value={formData.content_requirements}
-                  onChange={(e) => setFormData({ ...formData, content_requirements: e.target.value })}
-                  placeholder="Specify what content you expect from creators..."
-                  rows={4}
-                  required
+            {/* Deadline */}
+            <div>
+              <label className="block text-[#78350F] font-semibold mb-2">
+                Deadline
+              </label>
+              <input
+                type="date"
+                className="w-full px-4 py-3 bg-[#FEF3C7] text-[#78350F] rounded-lg border border-[#FDE68A] focus:outline-none focus:border-[#EC4899]"
+              />
+            </div>
+
+            {/* Niche Selection */}
+            <div>
+              <label className="block text-[#78350F] font-semibold mb-2">
+                Industry Niche
+              </label>
+              <select className="w-full px-4 py-3 bg-[#FEF3C7] text-[#78350F] rounded-lg border border-[#FDE68A] focus:outline-none focus:border-[#EC4899]">
+                <option>Select a niche...</option>
+                <option>Fashion & Beauty</option>
+                <option>Technology</option>
+                <option>Travel</option>
+                <option>Food & Beverage</option>
+                <option>Fitness & Health</option>
+                <option>Lifestyle</option>
+                <option>Gaming</option>
+                <option>Other</option>
+              </select>
+              {showCustomNiche && (
+                <input
+                  type="text"
+                  className="w-full mt-6 px-4 py-3 bg-[#FEF3C7] text-[#78350F] rounded-lg border border-[#FDE68A] focus:outline-none focus:border-[#EC4899]"
+                  placeholder="Enter your custom niche..."
                 />
-              </div>
+              )}
+            </div>
 
-              <div className="flex gap-4">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => navigate('/dashboard')}
-                  className="flex-1"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  type="submit"
-                  disabled={loading}
-                  className="flex-1"
-                  style={{ backgroundColor: '#6C63FF' }}
-                >
-                  {loading ? 'Creating...' : 'Create Campaign'}
-                </Button>
+            {/* Platform Requirements */}
+            <div>
+              <label className="block text-[#78350F] font-semibold mb-2">
+                Platform Requirements
+              </label>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { platform: "Instagram", icon: "Instagram" },
+                  { platform: "TikTok", icon: "Music" },
+                  { platform: "YouTube", icon: "Youtube" },
+                  { platform: "X (Twitter)", icon: "Twitter" },
+                ].map((item) => {
+                  const PlatformIcon = Icons[item.icon as keyof typeof Icons] as React.ComponentType<React.SVGProps<SVGSVGElement>>;
+                  return (
+                    <label key={item.platform} className="flex items-center space-x-3 p-3 bg-[#FEF3C7] rounded-lg cursor-pointer hover:bg-[#FDE68A] transition-all">
+                      <input type="checkbox" className="w-4 h-4 text-[#EC4899]" />
+                      <PlatformIcon className="w-5 h-5 text-[#78350F]" />
+                      <span className="text-[#78350F]">{item.platform}</span>
+                    </label>
+                  );
+                })}
               </div>
-            </form>
-          </CardContent>
-        </Card>
+            </div>
+
+            {/* Additional Requirements */}
+            <div>
+              <label className="block text-[#78350F] font-semibold mb-2">
+                Additional Requirements (Optional)
+              </label>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <input type="checkbox" className="w-4 h-4 text-[#EC4899]" />
+                  <label className="text-[#78350F]">Minimum follower count</label>
+                  <input
+                    type="number"
+                    className="w-24 px-3 py-1 bg-white text-[#78350F] rounded border border-[#FDE68A] focus:outline-none focus:border-[#EC4899]"
+                    placeholder="10000"
+                  />
+                </div>
+                <div className="flex items-center space-x-3">
+                  <input type="checkbox" className="w-4 h-4 text-[#EC4899]" />
+                  <label className="text-[#78350F]">Minimum engagement rate</label>
+                  <input
+                    type="number"
+                    className="w-24 px-3 py-1 bg-white text-[#78350F] rounded border border-[#FDE68A] focus:outline-none focus:border-[#EC4899]"
+                    placeholder="5"
+                    step="0.1"
+                  />
+                  <span className="text-[#78350F]/60">%</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <input type="checkbox" className="w-4 h-4 text-[#EC4899]" />
+                  <label className="text-[#78350F]">Verified creators only</label>
+                </div>
+              </div>
+            </div>
+
+            {/* Campaign Assets */}
+            <div>
+              <label className="block text-[#78350F] font-semibold mb-2">
+                Campaign Assets (Optional)
+              </label>
+              <div className="border-2 border-dashed border-[#FDE68A] rounded-lg p-6 text-center hover:border-[#EC4899] transition-all cursor-pointer">
+                <Icons.Paperclip className="w-8 h-8 text-[#78350F]/40 mx-auto mb-2" />
+                <p className="text-[#78350F]/60">Upload brand guidelines, product images, or other assets</p>
+                <p className="text-xs text-[#78350F]/40 mt-1">PDF, PNG, JPG up to 20MB</p>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

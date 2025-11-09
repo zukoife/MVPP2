@@ -1,15 +1,22 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Login from './pages/Login';
-import Register from './pages/Register';
+import SignUp from './pages/SignUp';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+import LandingPage from './pages/LandingPage';
+import OnboardingFlow from './pages/OnboardingFlow';
 import CreatorDashboard from './pages/CreatorDashboard';
 import BrandDashboard from './pages/BrandDashboard';
 import CreatorProfile from './pages/CreatorProfile';
 import BrandProfile from './pages/BrandProfile';
-import Campaigns from './pages/Campaigns';
+import DiscoverCampaigns from './pages/DiscoverCampaigns';
+import DiscoverCreators from './pages/DiscoverCreators';
 import CampaignDetail from './pages/CampaignDetail';
 import CreateCampaign from './pages/CreateCampaign';
-import SearchCreators from './pages/SearchCreators';
+import ApplyToCampaign from './pages/ApplyToCampaign';
+import Payments from './pages/Payments';
+import Settings from './pages/Settings';
 import './App.css';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -27,8 +34,13 @@ function AppRoutes() {
   
   return (
     <Routes>
+      <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
-      <Route path="/register" element={user ? <Navigate to="/dashboard" /> : <Register />} />
+      <Route path="/signup" element={user ? <Navigate to="/dashboard" /> : <SignUp />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      
+      <Route path="/onboarding" element={<PrivateRoute><OnboardingFlow /></PrivateRoute>} />
       
       <Route path="/dashboard" element={
         <PrivateRoute>
@@ -42,12 +54,15 @@ function AppRoutes() {
         </PrivateRoute>
       } />
       
-      <Route path="/campaigns" element={<PrivateRoute><Campaigns /></PrivateRoute>} />
+      <Route path="/campaigns" element={<PrivateRoute><DiscoverCampaigns /></PrivateRoute>} />
       <Route path="/campaigns/:id" element={<PrivateRoute><CampaignDetail /></PrivateRoute>} />
+      <Route path="/campaigns/:id/apply" element={<PrivateRoute><ApplyToCampaign /></PrivateRoute>} />
       <Route path="/campaigns/create" element={<PrivateRoute><CreateCampaign /></PrivateRoute>} />
-      <Route path="/creators/search" element={<PrivateRoute><SearchCreators /></PrivateRoute>} />
       
-      <Route path="/" element={<Navigate to="/dashboard" />} />
+      <Route path="/creators" element={<PrivateRoute><DiscoverCreators /></PrivateRoute>} />
+      
+      <Route path="/payments" element={<PrivateRoute><Payments /></PrivateRoute>} />
+      <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
     </Routes>
   );
 }
